@@ -1,0 +1,222 @@
+Query-> SQL project - Library Management System.
+
+-> Create a database named library.
+
+	CREATE DATABASE Library;
+	GO
+	USE Library;
+	GO
+
+-> Create table Branch.
+
+	CREATE TABLE Branch (
+		Branch_no INT PRIMARY KEY,
+		Manager_Id INT,
+		Branch_address VARCHAR(255),
+	        Contact_no VARCHAR(15)
+		);
+
+	INSERT INTO Branch (Branch_no, Manager_Id, Branch_address, Contact_no) VALUES
+		(1, 101, 'Mumbai', '02212345678'),
+		(2, 102, 'Delhi', '01112345678'),
+		(3, 103, 'Kolkata', '03312345678'),
+		(4, 104, 'Chennai', '04412345678'),
+		(5, 105, 'Bangalore', '08012345678'),
+		(6, 106, 'Hyderabad', '04012345678'),
+		(7, 107, 'Ahmedabad', '07912345678'),
+		(8, 108, 'Pune', '02012345678'),
+		(9, 109, 'Jaipur', '014112345678'),
+		(10, 110, 'Lucknow', '052212345678');
+
+	SELECT * FROM Branch;
+
+-> Create table Employee.
+	
+	CREATE TABLE Employee (
+    		Emp_id INT PRIMARY KEY,
+		Emp_name VARCHAR(100),
+		Position VARCHAR(100),
+		Salary DECIMAL(10, 2),
+		Branch_no INT,
+		FOREIGN KEY (Branch_no) REFERENCES Branch(Branch_no)
+		);
+
+	INSERT INTO Employee (Emp_id, Emp_name, Position, Salary, Branch_no) VALUES
+		(101, 'Ramesh Kumar', 'Manager', 60000, 1),
+		(102, 'Suresh Gupta', 'Manager', 62000, 2),
+		(103, 'Mahesh Jaiswal', 'Manager', 63000, 3),
+		(104, 'Rajesh Singh', 'Manager', 64000, 4),
+		(105, 'Naresh Singh', 'Manager', 65000, 5),
+		(106, 'Dinesh Gupta', 'Assistant Manager', 55000, 1),
+		(107, 'Mukesh Kumhar', 'Assistant Manager', 56000, 2),
+		(108, 'Lokesh Rahul', 'Assistant Manager', 57000, 3),
+		(109, 'Jignesh Reddy', 'Clerk', 30000, 1),
+		(110, 'Harish Chaudhary', 'Clerk', 31000, 2),
+		(111, 'Prakash Raj', 'Clerk', 32000, 3),
+		(112, 'Amit Trivedi', 'Clerk', 33000, 4),
+		(113, 'Sumit Shah', 'Clerk', 34000, 5),
+		(114, 'Pawan Kumar', 'BPO', 40000, 1),
+		(115, 'Sanjay Dutt', 'Technician', 36000, 1),
+		(116, 'Raju Rastogi', 'Technician', 38000, 3),
+		(117, 'Harsh Gujral', 'Clerk', 38000, 3)
+		(118, 'Ravi Shastri', 'Clerk', 32000, 3);
+
+	SELECT * from Employee;
+
+->Create table Books.
+
+	CREATE TABLE Books (
+	    ISBN VARCHAR(20) PRIMARY KEY,
+	    Book_title VARCHAR(255),
+	    Category VARCHAR(100),
+	    Rental_Price DECIMAL(10, 2),
+	    Status VARCHAR(3) CHECK (Status IN ('yes', 'no')),
+	    Author VARCHAR(100),
+	    Publisher VARCHAR(100)
+	);
+
+	INSERT INTO Books (ISBN, Book_title, Category, Rental_Price, Status, Author, Publisher) VALUES
+		('978-3-16-148410-0', 'The Great Gatsby', 'Fiction', 20.00, 'yes', 'F. Scott Fitzgerald', 'Scribner'),
+		('978-0-14-044926-6', 'Crime and Punishment', 'Fiction', 25.00, 'no', 'Fyodor Dostoevsky', 'Penguin Classics'),
+		('978-1-56619-909-4', 'War and Peace', 'History', 30.00, 'yes', 'Leo Tolstoy', 'Modern Library'),
+		('978-0-307-74176-3', 'The Wright Brothers', 'Biography', 22.00, 'yes', 'David McCullough', 'Simon & Schuster'),
+		('978-1-250-15126-0', 'A Brief History of Time', 'Science', 28.00, 'no', 'Stephen Hawking', 'Bantam Books'),
+		('978-0-06-231609-7', 'Sapiens', 'Non-Fiction', 27.00, 'yes', 'Yuval Noah Harari', 'Harper'),
+		('978-0-452-28423-4', 'The Art of War', 'History', 15.00, 'yes', 'Sun Tzu', 'Penguin Classics'),
+		('978-0-385-74322-4', 'The Road', 'Fiction', 20.00, 'yes', 'Cormac McCarthy', 'Vintage'),
+		('978-0-375-75253-0', 'The Catcher in the Rye', 'Fiction', 18.00, 'no', 'J.D. Salinger', 'Little, Brown and Company'),
+		('978-0-14-312779-6', 'The Boys in the Boat', 'Biography', 24.00, 'yes', 'Daniel James Brown', 'Penguin Books');
+	
+	SELECT * FROM Books;
+
+-> Create table Customer.
+
+	CREATE TABLE Customer (
+	    Customer_Id INT PRIMARY KEY,
+	    Customer_name VARCHAR(100),
+	    Customer_address VARCHAR(255),
+	    Reg_date DATE
+	);
+
+	INSERT INTO Customer (Customer_Id, Customer_name, Customer_address, Reg_date) VALUES
+		(301, 'Anil Sharma', 'Mumbai-Maharashtra', '2021-12-15'),
+		(302, 'Sunil Kumar', 'Delhi-Delhi', '2023-01-10'),
+		(303, 'Vinil Verma', 'Kolkata-West Bengal', '2020-05-20'),
+		(304, 'Rohit Gupta', 'Chennai-Tamil Nadu', '2021-11-25'),
+		(305, 'Manish Patel', 'Bangalore-Karnataka', '2022-08-14'),
+		(306, 'Rajeev Singh', 'Hyderabad-Telangana', '2023-02-10'),
+		(307, 'Karan Joshi', 'Ahmedabad-Gujarat', '2021-07-19'),
+		(308, 'Vikas Saxena', 'Pune-Maharashtra', '2020-03-30'),
+		(309, 'Ajay Deshmukh', 'Jaipur-Rajasthan', '2019-12-10'),
+		(310, 'Naveen Khanna', 'Lucknow-Uttar Pradesh', '2022-09-25');
+
+	SELECT * FROM Customer;
+
+->Create table IssueStatus.
+
+	CREATE TABLE IssueStatus (
+	    Issue_Id INT PRIMARY KEY,
+	    Issued_cust INT,
+	    Issued_book_name VARCHAR(255),
+	    Issue_date DATE,
+	    Isbn_book VARCHAR(20),
+	    FOREIGN KEY (Issued_cust) REFERENCES Customer(Customer_Id),
+	    FOREIGN KEY (Isbn_book) REFERENCES Books(ISBN)
+	);
+
+	INSERT INTO IssueStatus (Issue_Id, Issued_cust, Issued_book_name, Issue_date, Isbn_book) VALUES
+		(401, 301, 'The Great Gatsby', '2023-06-10', '978-3-16-148410-0'),
+		(402, 302, 'War and Peace', '2023-06-15', '978-1-56619-909-4'),
+		(403, 303, 'The Wright Brothers', '2023-06-18', '978-0-307-74176-3'),
+		(404, 304, 'Sapiens', '2023-06-20', '978-0-06-231609-7'),
+		(405, 305, 'The Road', '2023-06-22', '978-0-385-74322-4'),
+		(406, 306, 'The Boys in the Boat', '2023-06-25', '978-0-14-312779-6');
+
+	SELECT * from IssueStatus;
+
+-> Create table ReturnStatus.
+
+	CREATE TABLE ReturnStatus (
+	    Return_Id INT PRIMARY KEY,
+	    Return_cust INT,
+	    Return_book_name VARCHAR(255),
+	    Return_date DATE,
+	    Isbn_book2 VARCHAR(20),
+	    FOREIGN KEY (Return_cust) REFERENCES Customer(Customer_Id),
+	    FOREIGN KEY (Isbn_book2) REFERENCES Books(ISBN)
+	);
+
+	INSERT INTO ReturnStatus (Return_Id, Return_cust, Return_book_name, Return_date, Isbn_book2) VALUES
+		(501, 301, 'The Great Gatsby', '2023-07-01', '978-3-16-148410-0'),
+		(502, 302, 'War and Peace', '2023-07-03', '978-1-56619-909-4'),
+		(503, 303, 'The Wright Brothers', '2023-07-05', '978-0-307-74176-3'),
+		(504, 304, 'Sapiens', '2023-07-07', '978-0-06-231609-7');
+
+	SELECT * from ReturnStatus;
+
+
+-> Write the queries for the following :
+
+1. Retrieve the book title, category, and rental price of all available books.
+
+	SELECT Book_title, Category, Rental_price FROM Books
+	where Status='yes';
+
+2. List the employee names and their respective salaries in descending order of salary.
+
+	SELECT Emp_name, Salary FROM Employee
+	ORDER by Salary DESC;
+
+3. Retrieve the book titles and the corresponding customers who have issued those books.
+	
+	SELECT b.Book_title, c.Customer_name 
+	FROM Books b JOIN IssueStatus i on b.ISBN=i.Isbn_book
+	JOIN Customer c on i.Issued_cust=c.Customer_Id;
+
+4. Display the total count of books in each category.
+
+	SELECT Category, count(*) AS Total_Books FROM Books
+	GROUP BY Category;
+	
+5. Retrieve the employee names and their positions for the employees whose salaries are above Rs.50,000.
+
+	SELECT Emp_name, Position FROM Employee
+	WHERE Salary>50000;
+
+6. List the customer names who registered before 2022-01-01 and have not issued any books yet.
+
+	SELECT Customer_name FROM Customer
+	WHERE Reg_date<'2022-01-01' and Customer_id NOT IN (SELECT Issued_cust from IssueStatus);
+
+7. Display the branch numbers and the total count of employees in each branch.
+
+	SELECT Branch_no, COUNT(Emp_id) AS Total_Employee FROM Employee
+	GROUP BY Branch_no;	
+
+8. Display the names of customers who have issued books in the month of June 2023.
+
+	SELECT c.Customer_name FROM Customer c JOIN IssueStatus i ON c.Customer_Id=i.Issued_cust
+	WHERE MONTH(i.Issue_date)=06 AND YEAR(i.Issue_date)=2023;
+
+9. Retrieve book_title from book table containing history.
+
+	SELECT Book_title from Books
+	where Category='History';
+
+10.Retrieve the branch numbers along with the count of employees for branches having more than 5 employees.
+
+	SELECT Branch_no, COUNT(Emp_id) AS Total_Employee FROM Employee
+	GROUP BY Branch_no
+	HAVING COUNT(Emp_id)>5;
+
+11. Retrieve the names of employees who manage branches and their respective branch addresses.
+
+	SELECT e.Emp_name,b.Branch_address 
+	FROM Employee e JOIN Branch b ON e.Emp_id=b.Manager_Id;
+
+
+12. Display the names of customers who have issued books with a rental price higher than Rs. 25.
+
+	SELECT c.Customer_name FROM Books b JOIN IssueStatus i on b.ISBN=i.Isbn_book
+	JOIN Customer c on i.Issued_cust=c.Customer_Id
+	WHERE b.Rental_Price>25;
